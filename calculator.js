@@ -22,3 +22,25 @@ const buttons = document.querySelectorAll('button');
 
 let firstNumber = null;
 let secondNumber = null;
+
+//add event listeners to all buttons
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    console.log(button.id);
+    if (button.id == 'clear') {
+      display.textContent = '0';
+    }
+    if (button.classList.contains('number')) {
+      if (display.textContent == 0) {
+        display.textContent = button.id;
+      } else {
+        display.textContent += button.id;
+      }
+    }
+  });
+});
+
+//if number is pressed, add it to display
+//if operator is pressed, save number from display to first var
+//if number after that is pressed, clear display and add it to display
+//if next button pressed is another operator or equals, compute result and show it in display
