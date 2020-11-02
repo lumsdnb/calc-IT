@@ -1,32 +1,11 @@
-function add () {
-	
+function add(a, b) {
+  return a + b;
 }
 
-function subtract () {
-	
+function subtract(a, b) {
+  return a - b;
 }
 
-function sum () {
-	
-}
+function multiply() {}
 
-function multiply () {
-	
-}
-
-function power() {
-	
-}
-
-function factorial() {
-	
-}
-
-module.exports = {
-	add,
-	subtract,
-	sum,
-	multiply,
-    power,
-	factorial
-}
+function divide() {}
