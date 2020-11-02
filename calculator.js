@@ -31,11 +31,15 @@ buttons.forEach((button) => {
       display.textContent = '0';
     }
     if (button.classList.contains('number')) {
+      if (display.textContent.length > 9) return;
       if (display.textContent == 0) {
         display.textContent = button.id;
       } else {
         display.textContent += button.id;
       }
+    }
+    if (button.classList.contains('operator')) {
+      operate(firstNumber, secondNumber);
     }
   });
 });
