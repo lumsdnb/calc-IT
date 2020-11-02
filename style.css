@@ -42,24 +42,7 @@ body {
   background-color: blueviolet;
   user-select: none;
   border-radius: 4px;
-}
-
-.operator {
-  background-color: rgb(185, 125, 105);
-}
-
-#clear {
-  background-color: darkred;
-  flex-basis: 100%;
-  grid-column: span 2;
-}
-
-#equals {
-  grid-row: span 2;
-}
-
-.span2 {
-  grid-column: span 2;
+  border-style: none;
 }
 
 .c-btn:hover {
@@ -69,4 +52,21 @@ body {
 
 .c-btn:active {
   background-color: rgb(201, 182, 149);
+}
+
+.operator {
+  background-color: rgb(185, 125, 105);
+}
+
+#clear {
+  background-color: darkred;
+  grid-column: span 2;
+}
+
+#equals {
+  grid-row: span 2;
+}
+
+.span2 {
+  grid-column: span 2;
 }
