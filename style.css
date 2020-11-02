@@ -75,3 +75,9 @@ body {
 .span2 {
   grid-column: span 2;
 }
+
+@media only screen and (max-width: 450px) {
+  .outer-frame {
+    min-width: 250px;
+  }
+}
