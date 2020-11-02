@@ -48,13 +48,13 @@ body {
   background-color: rgb(185, 125, 105);
 }
 
-.clear {
+#clear {
   background-color: darkred;
   flex-basis: 100%;
   grid-column: span 2;
 }
 
-.equals {
+#equals {
   grid-row: span 2;
 }
 
@@ -63,9 +63,10 @@ body {
 }
 
 .c-btn:hover {
-  transition: background-color 0.1s;
+  transition: background-color 0.04s;
   background-color: wheat;
 }
 
 .c-btn:active {
+  background-color: rgb(201, 182, 149);
 }
