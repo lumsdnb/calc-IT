@@ -14,35 +14,93 @@ function divide(a, b) {
   return a / b;
 }
 
-function operate(num1, num2) {}
+function operate(num1, num2, operator) {
+  if (num1 === '' || num2 === '') return;
+  switch (operator) {
+    case value:
+      break;
 
-let display = document.querySelector('#display');
+    default:
+      break;
+  }
+}
 
-const buttons = document.querySelectorAll('button');
+function appendNumber(number) {}
 
-let firstNumber = null;
-let secondNumber = null;
+const prevValue = document.querySelector('.prev-value');
+const currentValue = document.querySelector('.current-value');
+
+const numberButtons = document.querySelectorAll('[data-number]');
+const operatorButtons = document.querySelectorAll('.operator');
+const clearButton = document.querySelector('#clear');
+
+let firstNumber = '';
+let secondNumber = '';
+
+function updateDisplay(operator) {
+  prevValue.textContent = `${currentValue.textContent} ${operator}`;
+  currentValue.textContent = '0';
+}
+
+//event listeners for all numbers
+numberButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    console.log(button.id);
+    if (currentValue.textContent.length > 9) return;
+    if (currentValue.textContent == 0) {
+      currentValue.textContent = button.id;
+    } else {
+      currentValue.textContent += button.id;
+    }
+  });
+});
+
+//event listeners for all operators
+operatorButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    firstNumber = currentValue.textContent;
+    switch (button.id) {
+      case 'plus':
+        updateDisplay('+');
+        operate(firstNumber, secondNumber, plus);
+        break;
+      case 'minus':
+        updateDisplay('-');
+        break;
+      case 'divide':
+        updateDisplay('÷');
+        break;
+      case 'multiply':
+        updateDisplay('*');
+        break;
+      case 'equals':
+      default:
+        break;
+    }
+  });
+});
+
+//clear button
+clearButton.addEventListener('click', () => {
+  prevValue.textContent = '';
+  currentValue.textContent = '0';
+  firstNumber = null;
+  secondNumber = null;
+});
 
 //add event listeners to all buttons
+/*
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
     console.log(button.id);
-    if (button.id == 'clear') {
-      display.textContent = '0';
-    }
     if (button.classList.contains('number')) {
-      if (display.textContent.length > 9) return;
-      if (display.textContent == 0) {
-        display.textContent = button.id;
-      } else {
-        display.textContent += button.id;
-      }
     }
     if (button.classList.contains('operator')) {
       operate(firstNumber, secondNumber);
     }
   });
 });
+*/
 
 //if number is pressed, add it to display
 //if operator is pressed, save number from display to first var

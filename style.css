@@ -3,6 +3,7 @@ body {
   margin: 4em;
   display: flex;
   justify-content: center;
+  font-family: monospace;
 }
 
 .outer-frame {
@@ -15,15 +16,15 @@ body {
   overflow: hidden;
   background-color: rgba(1, 1, 1, 0.7);
 }
-.button-container {
+.calculator-grid {
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
   grid-template-columns: repeat(4, 1fr);
   gap: 3px;
 }
 
 #display {
-  width: 100%;
+  grid-column: 1 / -1;
+  padding-right: 5px;
   background-color: salmon;
   text-align: right;
   justify-items: center;
@@ -32,8 +33,14 @@ body {
   border-radius: 4px;
   margin-bottom: 7px;
 }
+
+.prev-value {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.7);
+  padding-top: 10px;
+}
+
 .c-btn {
-  flex-basis: 25%;
   font-size: 2em;
   text-align: center;
   justify-items: center;
