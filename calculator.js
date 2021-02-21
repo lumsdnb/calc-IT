@@ -1,58 +1,48 @@
 function add(a, b) {
-  return a + b;
+  return parseInt(a) + parseInt(b);
 }
 
 function subtract(a, b) {
-  return a - b;
+  return parseInt(a) - parseInt(b);
 }
 
 function multiply(a, b) {
-  return a * b;
+  return parseInt(a) * parseInt(b);
 }
 
 function divide(a, b) {
-  return a / b;
+  return parseInt(a) / parseInt(b);
 }
-
-<<<<<<< HEAD
-function operate(num1, num2) {
-  if (num1 == null || num2 == null) return;
-  else console.log(`first number: ${num1}, second one is ${num2}`);
-}
-=======
-function operate(num1, num2, operator) {
-  if (num1 === '' || num2 === '') return;
-  switch (operator) {
-    case value:
-      break;
->>>>>>> a845ddbbf63893b12dc3b4879925a7d5004ec201
-
-    default:
-      break;
-  }
-}
-
-function appendNumber(number) {}
 
 const prevValue = document.querySelector('.prev-value');
 const currentValue = document.querySelector('.current-value');
 
-const numberButtons = document.querySelectorAll('[data-number]');
+const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
 const clearButton = document.querySelector('#clear');
+const equalsButton = document.querySelector('#equals');
 
 let firstNumber = '';
 let secondNumber = '';
+let currentOperator = '';
 
-function updateDisplay(operator) {
-  prevValue.textContent = `${currentValue.textContent} ${operator}`;
-  currentValue.textContent = '0';
+function updateValues(operator) {
+  if (currentValue.textContent == 0) return;
+  //prevValue.textContent.slice(-1) == operator
+  if (['+', '-', '÷', '*'].includes(prevValue.textContent.slice(-1))) {
+    console.log('has operator');
+    prevValue.textContent = `${prevValue.textContent} ${currentValue.textContent} ${operator}`;
+  } else {
+    prevValue.textContent = `${currentValue.textContent} ${operator}`;
+  }
+  currentValue.textContent = '';
 }
 
 //event listeners for all numbers
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
     console.log(button.id);
+    //edge case checking
     if (currentValue.textContent.length > 9) return;
     if (currentValue.textContent == 0) {
       currentValue.textContent = button.id;
@@ -65,66 +55,82 @@ numberButtons.forEach((button) => {
 //event listeners for all operators
 operatorButtons.forEach((button) => {
   button.addEventListener('click', () => {
+    //todo: check if operator has been entered, replace with new one if yes
+    if (['+', '-', '÷', '*'].includes(prevValue.textContent.slice(-1))) {
+      prevValue.textContent.slice(0, -2);
+    }
+
     firstNumber = currentValue.textContent;
+    currentOperator = button.id;
     switch (button.id) {
-      case 'plus':
-        updateDisplay('+');
-        operate(firstNumber, secondNumber, plus);
+      case '+':
+        add(firstNumber, secondNumber);
+        updateValues('+');
         break;
-      case 'minus':
-        updateDisplay('-');
+      case '-':
+        subtract(firstNumber, secondNumber, '-');
+        updateValues('-');
         break;
-      case 'divide':
-        updateDisplay('÷');
+      case '÷':
+        divide(firstNumber, secondNumber, '÷');
+        updateValues('÷');
         break;
-      case 'multiply':
-        updateDisplay('*');
+      case '*':
+        multiply(firstNumber, secondNumber, '*');
+        updateValues('*');
         break;
-      case 'equals':
+      //case 'equals':
+      //  operate(firstNumber, secondNumber);
       default:
         break;
     }
   });
 });
 
-//clear button
+//clear fields btn
 clearButton.addEventListener('click', () => {
+  clear();
+});
+
+function clear() {
   prevValue.textContent = '';
   currentValue.textContent = '0';
   firstNumber = null;
   secondNumber = null;
+}
+
+equalsButton.addEventListener('click', () => {
+  const activeOperand = prevValue.textContent.slice(-1);
+  const firstNum = prevValue.textContent.slice(0, -2);
+  const secondNum = currentValue.textContent;
+  switch (activeOperand) {
+    case '+':
+      clear();
+      currentValue.innerHTML = add(firstNum, secondNum);
+      break;
+    case '-':
+      clear();
+      currentValue.innerHTML = subtract(firstNum, secondNum);
+      break;
+    case '*':
+      clear();
+      currentValue.innerHTML = multiply(firstNum, secondNum);
+      break;
+    case '÷':
+      clear();
+      currentValue.innerHTML = divide(firstNum, secondNum);
+      break;
+    default:
+      break;
+  }
 });
+//do the operator
 
 function reset() {
   display.textContent = 0;
   firstNumber = null;
   secondNumber = null;
 }
-
-//add event listeners to all buttons
-/*
-buttons.forEach((button) => {
-  button.addEventListener('click', () => {
-    console.log(button.id);
-<<<<<<< HEAD
-    if (button.id == 'clear') {
-      reset();
-    }
-=======
->>>>>>> a845ddbbf63893b12dc3b4879925a7d5004ec201
-    if (button.classList.contains('number')) {
-    }
-    if (button.classList.contains('operator')) {
-      if (!firstNumber) {
-        firstNumber = display.textContent;
-      } else if (firstNumber && !secondNumber) {
-        secondNumber = display.textContent;
-        operate(firstNumber, secondNumber);
-      }
-    }
-  });
-});
-*/
 
 //if operator is pressed, save number from display to first var
 //if number after that is pressed, clear display and add it to display
